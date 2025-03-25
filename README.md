@@ -6,14 +6,14 @@ The **Secure Authentication Module** is designed to enhance OS-level security by
 ## 🚀 Features
 ✅ **Multi-Factor Authentication (MFA)** – Secure login with username, password, and facial recognition.  
 ✅ **Face Recognition Authentication** – Capture and verify user identity via webcam or uploaded images.  
-✅ **Modern UI** – Aesthetic and responsive login interface built with React & Tailwind CSS.  
+✅ **Modern UI** – Aesthetic and responsive login interface built with React.  
 ✅ **Flask Backend** – Handles authentication, user management, and face verification.  
 ✅ **Security Measures** – Protects against brute-force attacks and unauthorized access.  
 
 ## 🛠️ Technologies Used
-### **Frontend (React + Tailwind CSS)**
+### **Frontend (React )**
 - React.js (UI Framework)
-- Tailwind CSS (Styling)
+- CSS (Styling)
 - Axios (API Requests)
 
 ### **Backend (Flask)**
