@@ -4,7 +4,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: -1;
+    z-index: 0;
     background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('/1.jpg');
     background-size: cover;
     background-position: center;
@@ -200,6 +200,7 @@ body {
     border: 1px solid rgba(255, 255, 255, 0.1);
     position: relative;
     overflow: hidden;
+    z-index: 2;
 }
 
 .container::before {
@@ -611,5 +612,194 @@ button:hover::before {
     }
     100% {
         transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+/* Chat Box Styles */
+.chat-box-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 9999;
+}
+
+.chat-box-button {
+    background: rgba(28, 32, 48, 0.95);
+    border: 1px solid #2962ff;
+    border-radius: 10px;
+    padding: 10px 20px;
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 0 10px rgba(41, 98, 255, 0.3);
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 9999;
+}
+
+.chat-box-button:hover {
+    box-shadow: 0 0 15px rgba(41, 98, 255, 0.5);
+    transform: translateY(-2px);
+}
+
+.chat-box-icon {
+    font-size: 1.2em;
+}
+
+.chat-box {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 300px;
+    height: 400px;
+    background: rgba(28, 32, 48, 0.95);
+    border: 1px solid #2962ff;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 0 20px rgba(41, 98, 255, 0.3);
+    z-index: 9999;
+}
+
+.chat-box-header {
+    padding: 12px 15px;
+    background: rgba(41, 98, 255, 0.1);
+    border-bottom: 1px solid #2962ff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.bot-logo {
+    font-size: 24px;
+    animation: float 2s ease-in-out infinite;
+}
+
+.chat-box-header h3 {
+    margin: 0;
+    color: #fff;
+    font-size: 16px;
+}
+
+.close-button {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 14px;
+    cursor: pointer;
+    padding: 4px;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    opacity: 0.7;
+}
+
+.close-button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    opacity: 1;
+}
+
+.chat-box-messages {
+    flex-grow: 1;
+    padding: 15px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.message {
+    padding: 8px 12px;
+    border-radius: 10px;
+    max-width: 80%;
+    word-wrap: break-word;
+}
+
+.message.bot {
+    background: rgba(41, 98, 255, 0.2);
+    color: #fff;
+    align-self: flex-start;
+}
+
+.message.user {
+    background: rgba(41, 98, 255, 0.4);
+    color: #fff;
+    align-self: flex-end;
+}
+
+.chat-box-input {
+    padding: 15px;
+    border-top: 1px solid #2962ff;
+}
+
+.input-container {
+    display: flex;
+    gap: 10px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    padding: 5px;
+    border: 1px solid rgba(41, 98, 255, 0.3);
+}
+
+.input-container input {
+    flex-grow: 1;
+    padding: 8px 15px;
+    border: none;
+    background: none;
+    color: #fff;
+    font-size: 14px;
+    outline: none;
+}
+
+.input-container input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.input-container button {
+    background: #2962ff;
+    border: none;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 0;
+}
+
+.input-container button:hover {
+    background: #1e88e5;
+    transform: scale(1.05);
+}
+
+.send-icon {
+    color: white;
+    font-size: 12px;
+    transform: rotate(90deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-3px);
     }
 }

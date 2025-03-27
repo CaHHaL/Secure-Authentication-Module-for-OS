@@ -3,6 +3,7 @@ import axios from "axios";
 import { QRCodeCanvas } from "qrcode.react";
 import Webcam from "react-webcam";
 import "./styles.css";
+import ChatBox from './components/ChatBox';
 
 // Signup Component
 const Signup = ({ onBackToLogin }) => {
@@ -354,6 +355,9 @@ export default function App() {
           <Dashboard username={username} />
       )}
     </div>
+
+      {/* Chat box placed outside the container */}
+      <ChatBox />
     </>
   );
 }
