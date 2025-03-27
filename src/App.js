@@ -191,20 +191,20 @@ export default function App() {
       const base64Data = imageSrc.split(',')[1];
       const blob = await fetch(`data:image/jpeg;base64,${base64Data}`).then(res => res.blob());
       
-      const formData = new FormData();
+    const formData = new FormData();
       formData.append('image', blob, 'webcam.jpg');
       formData.append('username', username);
 
-      try {
-        const res = await axios.post("http://localhost:5000/face-auth", formData);
-        if (res.data.success) {
-          setStep(3);
+    try {
+      const res = await axios.post("http://localhost:5000/face-auth", formData);
+      if (res.data.success) {
+        setStep(3);
           setErrorMessage("");
           setShowWebcam(false);
-        } else {
+      } else {
           setErrorMessage(res.data.message || "Face verification failed! Please try again.");
-        }
-      } catch (err) {
+      }
+    } catch (err) {
         setErrorMessage(
           err.response?.data?.message || 
           "Error processing face verification. Please try again."
@@ -236,102 +236,124 @@ export default function App() {
   };
 
   return (
-    <div className={`container ${showDashboard ? 'dashboard-active' : ''}`}>
-      {!showDashboard ? (
-        <>
-          <h2>Secure Authentication System</h2>
-
-          {errorMessage && (
-            <div className="error-message">
-              ⚠️ {errorMessage}
+    <>
+      <div className="background-animation">
+        <div className="network-grid"></div>
+        <div className="network-particles">
+          <span className="particle-1"></span>
+          <span className="particle-2"></span>
+          <span className="particle-3"></span>
+          <span className="particle-4"></span>
+          <span className="particle-5"></span>
+          <span className="particle-6"></span>
+        </div>
+        <div className="scanning-line-horizontal"></div>
+        <div className="scanning-line-vertical"></div>
+        <div className="binary-rain">
+          {Array(20).fill('').map((_, i) => (
+            <div key={i} style={{position: 'absolute', left: `${i * 5}%`}}>
+              {'01'.repeat(100)}
             </div>
-          )}
+          ))}
+        </div>
+      </div>
+      <div className={`container ${showDashboard ? 'dashboard-active' : ''}`}>
+        {!showDashboard ? (
+          <>
+      <h2>Secure Authentication System</h2>
 
-          {showSignup ? (
-            <Signup onBackToLogin={() => setShowSignup(false)} />
-          ) : (
-            <>
-              {step === 1 && (
-                <>
-                  <input 
-                    type="text" 
-                    placeholder="Username" 
-                    value={username} 
-                    onChange={(e) => setUsername(e.target.value)} 
-                  />
-                  <input 
-                    type="password" 
-                    placeholder="Password" 
-                    value={password} 
-                    onChange={(e) => setPassword(e.target.value)} 
-                  />
-                  <button onClick={handleLogin}>Login</button>
-                  <p className="auth-link">
-                    Don't have an account?{" "}
-                    <span onClick={() => setShowSignup(true)} className="link-text">
-                      Sign up here
-                    </span>
-                  </p>
-                </>
-              )}
+            {errorMessage && (
+              <div className="error-message">
+                ⚠️ {errorMessage}
+              </div>
+            )}
 
-              {step === 2 && (
-                <>
-                  <h3>Step 2: Face Verification</h3>
-                  <div className="webcam-container">
-                    {showWebcam ? (
-                      <>
-                        <Webcam
-                          ref={webcamRef}
-                          screenshotFormat="image/jpeg"
-                          mirrored={true}
-                          className="webcam"
-                        />
-                        <div className="webcam-buttons">
-                          <button onClick={handleCapture}>Capture & Verify</button>
-                          <button onClick={() => setShowWebcam(false)} className="cancel-btn">
-                            Cancel
-                          </button>
-                        </div>
-                      </>
-                    ) : (
-                      <button onClick={() => setShowWebcam(true)}>
-                        Start Camera
-                      </button>
-                    )}
-                  </div>
-                </>
-              )}
-
-              {step === 3 && (
-                <>
-                  <h3>Step 3: Enter OTP</h3>
-                  <QRCodeCanvas value={qrCode} />
-                  <input 
-                    type="text" 
-                    placeholder="Enter OTP" 
-                    value={otp} 
-                    onChange={(e) => setOtp(e.target.value)} 
-                  />
-                  <button onClick={handleOtpVerify}>Verify OTP</button>
-                </>
-              )}
-
-              {step === 4 && (
-                <div className="success-container">
-                  <h2>✅ Authentication Successful</h2>
-                  <p>Welcome, {username}! Your authentication is complete and secure.</p>
-                  <button className="dashboard-btn" onClick={() => setShowDashboard(true)}>
-                    Go to Dashboard
-                  </button>
-                </div>
-              )}
-            </>
-          )}
+            {showSignup ? (
+              <Signup onBackToLogin={() => setShowSignup(false)} />
+            ) : (
+              <>
+      {step === 1 && (
+        <>
+                    <input 
+                      type="text" 
+                      placeholder="Username" 
+                      value={username} 
+                      onChange={(e) => setUsername(e.target.value)} 
+                    />
+                    <input 
+                      type="password" 
+                      placeholder="Password" 
+                      value={password} 
+                      onChange={(e) => setPassword(e.target.value)} 
+                    />
+          <button onClick={handleLogin}>Login</button>
+                    <p className="auth-link">
+                      Don't have an account?{" "}
+                      <span onClick={() => setShowSignup(true)} className="link-text">
+                        Sign up here
+                      </span>
+                    </p>
         </>
-      ) : (
-        <Dashboard username={username} />
+      )}
+
+      {step === 2 && (
+        <>
+          <h3>Step 2: Face Verification</h3>
+                    <div className="webcam-container">
+                      {showWebcam ? (
+                        <>
+                          <Webcam
+                            ref={webcamRef}
+                            screenshotFormat="image/jpeg"
+                            mirrored={true}
+                            className="webcam"
+                          />
+                          <div className="webcam-buttons">
+                            <button onClick={handleCapture}>Capture & Verify</button>
+                            <button onClick={() => setShowWebcam(false)} className="cancel-btn">
+                              Cancel
+                            </button>
+                          </div>
+                        </>
+                      ) : (
+                        <button onClick={() => setShowWebcam(true)}>
+                          Start Camera
+                        </button>
+                      )}
+                    </div>
+        </>
+      )}
+
+      {step === 3 && (
+        <>
+          <h3>Step 3: Enter OTP</h3>
+          <QRCodeCanvas value={qrCode} />
+                    <input 
+                      type="text" 
+                      placeholder="Enter OTP" 
+                      value={otp} 
+                      onChange={(e) => setOtp(e.target.value)} 
+                    />
+          <button onClick={handleOtpVerify}>Verify OTP</button>
+        </>
+      )}
+
+                {step === 4 && (
+        <div className="success-container">
+          <h2>✅ Authentication Successful</h2>
+          <p>Welcome, {username}! Your authentication is complete and secure.</p>
+                    <button className="dashboard-btn" onClick={() => setShowDashboard(true)}>
+                      Go to Dashboard
+                    </button>
+        </div>
+      )}
+              </>
+            )}
+          </>
+        ) : (
+          <Dashboard username={username} />
       )}
     </div>
+    </>
   );
 }

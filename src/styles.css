@@ -1,3 +1,181 @@
+.background-animation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('/1.jpg');
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+}
+
+.network-grid {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        linear-gradient(to right, rgba(30, 144, 255, 0.1) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(30, 144, 255, 0.1) 1px, transparent 1px);
+    background-size: 50px 50px;
+    animation: moveGrid 15s linear infinite;
+}
+
+.network-particles {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.network-particles::before,
+.network-particles::after,
+.network-particles span {
+    content: '';
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background: rgba(30, 144, 255, 0.5);
+    border-radius: 50%;
+    box-shadow: 
+        0 0 10px rgba(30, 144, 255, 0.8),
+        0 0 20px rgba(30, 144, 255, 0.6),
+        0 0 30px rgba(30, 144, 255, 0.4);
+}
+
+.particle-1 { animation: floatParticle1 4s ease-in-out infinite; top: 20%; left: 20%; }
+.particle-2 { animation: floatParticle2 6s ease-in-out infinite; top: 70%; left: 80%; }
+.particle-3 { animation: floatParticle3 5s ease-in-out infinite; top: 40%; left: 60%; }
+.particle-4 { animation: floatParticle4 7s ease-in-out infinite; top: 80%; left: 30%; }
+.particle-5 { animation: floatParticle5 8s ease-in-out infinite; top: 30%; left: 70%; }
+.particle-6 { animation: floatParticle6 5s ease-in-out infinite; top: 60%; left: 40%; }
+
+.hexagon {
+    position: absolute;
+    width: 100px;
+    height: 57.735px;
+    background: transparent;
+    border: 2px solid rgba(30, 144, 255, 0.2);
+    animation: pulse 3s ease-in-out infinite;
+}
+
+.hexagon::before,
+.hexagon::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    border-left: 50px solid transparent;
+    border-right: 50px solid transparent;
+}
+
+.hexagon::before {
+    bottom: 100%;
+    border-bottom: 28.8675px solid rgba(30, 144, 255, 0.2);
+}
+
+.hexagon::after {
+    top: 100%;
+    border-top: 28.8675px solid rgba(30, 144, 255, 0.2);
+}
+
+.binary-rain {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    color: rgba(30, 144, 255, 0.2);
+    font-family: monospace;
+    font-size: 14px;
+    line-height: 1;
+    animation: rain 20s linear infinite;
+}
+
+.scanning-line-horizontal {
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(to right, 
+        transparent,
+        rgba(30, 144, 255, 0.5),
+        #1e90ff,
+        rgba(30, 144, 255, 0.5),
+        transparent
+    );
+    animation: scanHorizontal 4s linear infinite;
+}
+
+.scanning-line-vertical {
+    position: absolute;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(to bottom, 
+        transparent,
+        rgba(30, 144, 255, 0.5),
+        #1e90ff,
+        rgba(30, 144, 255, 0.5),
+        transparent
+    );
+    animation: scanVertical 6s linear infinite;
+}
+
+@keyframes moveGrid {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(50px); }
+}
+
+@keyframes floatParticle1 {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(30px, 30px); }
+}
+
+@keyframes floatParticle2 {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(-30px, -30px); }
+}
+
+@keyframes floatParticle3 {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(-20px, 40px); }
+}
+
+@keyframes floatParticle4 {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(40px, -20px); }
+}
+
+@keyframes floatParticle5 {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(-40px, 20px); }
+}
+
+@keyframes floatParticle6 {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(20px, -40px); }
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 0.2; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.1); }
+}
+
+@keyframes scanHorizontal {
+    0% { top: -50%; opacity: 0; }
+    50% { opacity: 1; }
+    100% { top: 150%; opacity: 0; }
+}
+
+@keyframes scanVertical {
+    0% { left: -50%; opacity: 0; }
+    50% { opacity: 1; }
+    100% { left: 150%; opacity: 0; }
+}
+
+@keyframes rain {
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(100%); }
+}
+
 body {
     margin: 0;
     padding: 0;
@@ -5,57 +183,115 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/1.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    font-family: Arial, sans-serif;
+    position: relative;
 }
 
 .container {
     width: 400px;
     padding: 30px;
-    background: rgba(255, 255, 255, 0.95);
+    background: rgba(15, 17, 26, 0.9);
     border-radius: 12px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
     text-align: center;
-    font-family: Arial, sans-serif;
+    font-family: 'Segoe UI', Arial, sans-serif;
     backdrop-filter: blur(8px);
     transform: translateX(-370px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.container::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        45deg,
+        transparent,
+        rgba(30, 144, 255, 0.1),
+        transparent
+    );
+    animation: shine 4s linear infinite;
 }
 
 h2 {
-    color: #333;
+    color: #fff;
     margin-bottom: 20px;
+    text-shadow: 0 0 10px rgba(30, 144, 255, 0.5);
+    letter-spacing: 1px;
 }
 
 h3 {
-    color: #555;
+    color: #fff;
     margin-bottom: 15px;
+    text-shadow: 0 0 10px rgba(30, 144, 255, 0.5);
 }
 
 input {
     width: calc(100% - 20px);
-    padding: 10px;
+    padding: 12px;
     margin: 10px 0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(30, 144, 255, 0.2);
+    border-radius: 6px;
+    color: #fff;
     font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+input:focus {
+    outline: none;
+    border-color: #1e90ff;
+    box-shadow: 0 0 15px rgba(30, 144, 255, 0.3);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
 }
 
 button {
     width: 100%;
-    padding: 10px;
-    margin-top: 10px;
-    background-color: #007bff;
+    padding: 12px;
+    margin-top: 15px;
+    background: linear-gradient(45deg, #1e90ff, #00bfff);
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 6px;
     font-size: 16px;
     cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
 }
 
 button:hover {
-    background-color: #0056b3;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(30, 144, 255, 0.4);
+}
+
+button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.2),
+        transparent
+    );
+    transition: 0.5s;
+}
+
+button:hover::before {
+    left: 100%;
 }
 
 .qr-container {
@@ -65,12 +301,14 @@ button:hover {
 .success-container {
     text-align: center;
     padding: 30px;
-    background: linear-gradient(135deg, #28a745, #20c997);
+    background: linear-gradient(135deg, rgba(40, 167, 69, 0.2), rgba(0, 191, 255, 0.2));
     color: white;
     border-radius: 12px;
     box-shadow: 0 8px 32px rgba(40, 167, 69, 0.2);
     margin-top: 20px;
     animation: slideIn 0.5s ease-out;
+    border: 1px solid rgba(40, 167, 69, 0.3);
+    backdrop-filter: blur(8px);
     font-family: 'Segoe UI', Arial, sans-serif;
 }
 
@@ -94,12 +332,14 @@ button:hover {
 .error-message {
     text-align: center;
     padding: 15px 20px;
-    background: linear-gradient(135deg, #dc3545, #ff6b6b);
-    color: white;
+    background: linear-gradient(135deg, rgba(220, 53, 69, 0.2), rgba(255, 107, 107, 0.2));
+    color: #ff6b6b;
     border-radius: 8px;
     box-shadow: 0 4px 16px rgba(220, 53, 69, 0.2);
     margin: 15px 0;
     animation: shake 0.5s ease-in-out;
+    border: 1px solid rgba(220, 53, 69, 0.3);
+    backdrop-filter: blur(8px);
     font-family: 'Segoe UI', Arial, sans-serif;
     font-size: 16px;
     display: flex;
@@ -286,19 +526,37 @@ button:hover {
 
 .auth-link {
     margin-top: 20px;
-    color: #666;
+    color: rgba(255, 255, 255, 0.7);
     font-size: 14px;
 }
 
 .link-text {
-    color: #007bff;
+    color: #1e90ff;
     cursor: pointer;
     font-weight: 600;
-    text-decoration: underline;
+    text-decoration: none;
+    position: relative;
+    transition: all 0.3s ease;
 }
 
 .link-text:hover {
-    color: #0056b3;
+    color: #00bfff;
+    text-shadow: 0 0 10px rgba(30, 144, 255, 0.5);
+}
+
+.link-text::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: #00bfff;
+    transition: width 0.3s ease;
+}
+
+.link-text:hover::after {
+    width: 100%;
 }
 
 .success-message {
@@ -345,4 +603,13 @@ button:hover {
 
 .cancel-btn:hover {
     background-color: #c82333;
+}
+
+@keyframes shine {
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+    100% {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
 }
