@@ -28,9 +28,6 @@ if not os.path.exists(FACE_STORAGE_DIR):
 # File to store user credentials
 USERS_FILE = 'users.json'
 
-# Add this dictionary to store active QR codes
-active_qr_codes = {}
-
 def load_users():
     if os.path.exists(USERS_FILE):
         with open(USERS_FILE, 'r') as f:

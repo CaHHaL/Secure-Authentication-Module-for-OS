@@ -92,47 +92,84 @@ const Signup = ({ onBackToLogin }) => {
 const Dashboard = ({ username }) => {
   return (
     <div className="dashboard">
-      <h1>Secure Authentication Module for OS</h1>
-      
-      <div className="project-info">
-        <h2>About the Project</h2>
-        <p>A robust multi-factor authentication system that combines traditional password security with modern biometric verification and time-based OTP validation. This system ensures the highest level of security through a three-step verification process.</p>
-      </div>
+      <header className="dashboard-header">
+        <h1>Secure Authentication Module for OS</h1>
+      </header>
 
-      <div className="developer-cards">
-        <div className="dev-card">
-          <img src="/dev1.jpg" alt="Developer 1" className="dev-image"/>
-          <h3>Cahal Agarwalla</h3>
-          <p>Full Stack Developer</p>
-          <div className="social-links">
-            <a href="https://linkedin.com/in/cahal-agarwalla" target="_blank" rel="noopener noreferrer">
-              <img src="/linkedin.png" alt="LinkedIn" className="social-icon"/>
-            </a>
-            <a href="https://github.com/CaHHaL" target="_blank" rel="noopener noreferrer">
-              <img src="/github.png" alt="GitHub" className="social-icon"/>
-            </a>
-            <a href="https://x.com/CahalAgarwalla" target="_blank" rel="noopener noreferrer">
-              <img src="/twitter.png" alt="X" className="social-icon"/>
-            </a>
+      <div className="dashboard-content">
+        <section className="about-section">
+          <h2>About the Project</h2>
+          <div className="scrollable-content">
+            <p>A robust multi-factor authentication system that combines traditional password security with modern biometric verification and time-based OTP validation. This system ensures the highest level of security through a three-step verification process.</p>
+            <p>Key Features:</p>
+            <ul>
+              <li>Multi-factor authentication</li>
+              <li>Biometric face recognition</li>
+              <li>Time-based OTP validation</li>
+              <li>Secure password management</li>
+              <li>Real-time verification</li>
+            </ul>
           </div>
-        </div>
+        </section>
 
-        <div className="dev-card">
-          <img src="/dev2.jpg" alt="Developer 2" className="dev-image"/>
-          <h3>CahalAgarwalla</h3>
-          <p>Security Expert</p>
-          <div className="social-links">
-            <a href="https://linkedin.com/in/janesmith" target="_blank" rel="noopener noreferrer">
-              <img src="/linkedin.png" alt="LinkedIn" className="social-icon"/>
-            </a>
-            <a href="https://github.com/janesmith" target="_blank" rel="noopener noreferrer">
-              <img src="/github.png" alt="GitHub" className="social-icon"/>
-            </a>
-            <a href="https://twitter.com/janesmith" target="_blank" rel="noopener noreferrer">
-              <img src="/twitter.png" alt="X" className="social-icon"/>
-            </a>
+        <section className="blog-section">
+          <h2>Latest Updates</h2>
+          <div className="scrollable-content">
+            <article className="blog-post">
+              <h3>New Security Features Added</h3>
+              <p>We've implemented enhanced security measures to protect your data...</p>
+            </article>
+            <article className="blog-post">
+              <h3>System Performance Improvements</h3>
+              <p>Recent updates have significantly improved the system's response time...</p>
+            </article>
+            <article className="blog-post">
+              <h3>User Experience Enhancements</h3>
+              <p>We've made several improvements to make the authentication process smoother...</p>
+            </article>
           </div>
-        </div>
+        </section>
+
+        <section className="developer-section">
+          <h2>Meet the Team</h2>
+          <div className="scrollable-content">
+            <div className="developer-cards">
+              <div className="dev-card">
+                <img src="/dev2.jpg" alt="Developer 1" className="dev-image"/>
+                <h3>Cahal Agarwalla</h3>
+                <p>Developer</p>
+                <div className="social-links">
+                  <a href="https://linkedin.com/in/cahal-agarwalla" target="_blank" rel="noopener noreferrer">
+                    <img src="/linkedin.png" alt="LinkedIn" className="social-icon"/>
+                  </a>
+                  <a href="https://github.com/CaHHaL" target="_blank" rel="noopener noreferrer">
+                    <img src="/github.png" alt="GitHub" className="social-icon"/>
+                  </a>
+                  <a href="https://x.com/CahalAgarwalla" target="_blank" rel="noopener noreferrer">
+                    <img src="/twitter.png" alt="X" className="social-icon"/>
+                  </a>
+                </div>
+              </div>
+
+              <div className="dev-card">
+                <img src="/dev3.jpg" alt="Developer 2" className="dev-image"/>
+                <h3>CahalAgarwalla</h3>
+                <p>Developer</p>
+                <div className="social-links">
+                  <a href="https://www.linkedin.com/in/jagrati-dwivedi-0389a8289/" target="_blank" rel="noopener noreferrer">
+                    <img src="/linkedin.png" alt="LinkedIn" className="social-icon"/>
+                  </a>
+                  <a href="https://www.linkedin.com/in/jagrati-dwivedi-0389a8289/" target="_blank" rel="noopener noreferrer">
+                    <img src="/github.png" alt="GitHub" className="social-icon"/>
+                  </a>
+                  <a href="https://www.linkedin.com/in/jagrati-dwivedi-0389a8289/" target="_blank" rel="noopener noreferrer">
+                    <img src="/twitter.png" alt="X" className="social-icon"/>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
       </div>
     </div>
   );
@@ -328,13 +365,21 @@ export default function App() {
       {step === 3 && (
         <>
           <h3>Step 3: Enter OTP</h3>
-          <QRCodeCanvas value={qrCode} />
-                    <input 
-                      type="text" 
-                      placeholder="Enter OTP" 
-                      value={otp} 
-                      onChange={(e) => setOtp(e.target.value)} 
-                    />
+          <div className="qr-container">
+            <QRCodeCanvas 
+              value={qrCode} 
+              size={256}
+              level="H"
+              includeMargin={true}
+            />
+            <p className="qr-instructions">Scan this QR code with your authenticator app</p>
+          </div>
+          <input 
+            type="text" 
+            placeholder="Enter OTP" 
+            value={otp} 
+            onChange={(e) => setOtp(e.target.value)} 
+          />
           <button onClick={handleOtpVerify}>Verify OTP</button>
         </>
       )}
