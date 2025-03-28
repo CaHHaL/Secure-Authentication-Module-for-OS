@@ -2,7 +2,6 @@
 
 A robust multi-factor authentication system that combines traditional password security with modern biometric verification and time-based OTP validation.
 
-![Security Shield](https://img.shields.io/badge/Security-Level-High-red)
 ![React](https://img.shields.io/badge/React-18.2.0-blue)
 ![Python](https://img.shields.io/badge/Python-3.8+-blue)
 ![License](https://img.shields.io/badge/License-MIT-green)
@@ -153,12 +152,12 @@ sequenceDiagram
 ## 👥 Team
 
 ### Core Developers
-- **Cahal Agarwalla** - Full Stack Developer
+- **Cahal Agarwalla** - Developer
   - [LinkedIn](https://linkedin.com/in/cahal-agarwalla)
   - [GitHub](https://github.com/CaHHaL)
   - [Twitter](https://x.com/CahalAgarwalla)
 
-- **CahalAgarwalla** - Security Expert
+- **Jagrati Dwivedi** - Developer
   - [LinkedIn](https://www.linkedin.com/in/jagrati-dwivedi-0389a8289/)
   - [GitHub](https://www.linkedin.com/in/jagrati-dwivedi-0389a8289/)
   - [Twitter](https://www.linkedin.com/in/jagrati-dwivedi-0389a8289/)
